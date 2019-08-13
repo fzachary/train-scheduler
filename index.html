@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Train Time</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <div class="jumbotron" style="background-image: url('assets/images/train-wallpaper.jpg');">
+            <h1 class="text-center text-light">I Hear That Train a'Comin'</h1>
+        </div>
+
+        <div class="container">
+            <div class="card-header text-center"><h3 style="color: darkblue;">Current Train Schedule</h3></div>
+
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">NAME</th>
+                        <th scope="col">DESTINATION</th>
+                        <th scope="col">FREQUENCY (MIN)</th>
+                        <th scope="col">NEXT ARRIVAL</th>
+                        <th scope="col">MINUTES AWAY</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                            <td>Trenton Express</td>
+                            <td>Trenton</td>
+                            <td>25</td>
+                            <td>5:35 PM</td>
+                            <td>10</td>
+                    </tr>
+                    <tr>
+                            <td>Oregon Trail</td>
+                            <td>Salem, Oregon</td>
+                            <td>3600</td>
+                            <td>1:39 PM</td>
+                            <td>1154</td>
+                    </tr>
+                    <tr>
+                            <td>Midnight Carriage</td>
+                            <td>Philadelphia</td>
+                            <td>15</td>
+                            <td>5:35 PM</td>
+                            <td>10</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <br>
+
+        <div class="container" style="border-style: solid; margin-bottom: 30px; border-radius: 5px;">
+            <div class="card-header text-center"><h3 style="color: darkblue;">Add New Train</h3></div>
+                <form>
+                    <div class="form-group">
+                        <label for="trainName">Train Name</label>
+                        <input type="name" class="form-control" id="trainName">
+                    </div>
+                    <div class="form-group">
+                        <label for="trainDestination">Destination</label>
+                        <input type="trainDestination" class="form-control" id="trainDestination">
+                    </div>
+                    <div class="form-group">
+                        <label for="trainTime">First Train Time (HH:mm - Military Time)</label>
+                        <input type="trainTime" class="form-control" id="trainTime">
+                    </div>
+                    <div class="form-group">
+                        <label for="trainFrequency">Frequency (Min)</label>
+                        <input type="trainFrequency" class="form-control" id="trainFrequency">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="margin-bottom: 15px;">Submit</button>
+                    </form>
+    </div>
+    
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
