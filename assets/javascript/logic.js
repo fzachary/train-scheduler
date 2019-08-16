@@ -12,12 +12,12 @@ var firebaseConfig = {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
-// VARIABLES
+// Global Variables
 var database = firebase.database();
 
 // FUNCTIONS & EVENTS
 $(document).ready(function() {
-    console.log("ready");
+    // console.log("ready");
 });
 
 // Button for adding trains
@@ -32,7 +32,7 @@ $("#submit-button").on("click", function(event) {
     var trainStart = $("#trainTime").val().trim();
     var trainFrequency = $("#trainFrequency").val().trim();
     var trainFrequencyInt = parseInt($("#trainFrequency").val().trim());
-    console.log(trainFrequencyInt);
+    // console.log(trainFrequencyInt);
 
     // "Temporary" object for holding data
     var trainObj = {
@@ -46,11 +46,12 @@ $("#submit-button").on("click", function(event) {
     database.ref().push(trainObj);
 
     // Log everything to the console
-    console.log(trainObj.name);
-    console.log(trainObj.destination);
-    console.log(trainObj.firstTrain);
-    console.log(trainObj.frequency);
+    // console.log(trainObj.name);
+    // console.log(trainObj.destination);
+    // console.log(trainObj.firstTrain);
+    // console.log(trainObj.frequency);
 
+    // Alert the user that the train was added
     alert("Train successfully added");
 
     // Clear text boxes
@@ -58,63 +59,63 @@ $("#submit-button").on("click", function(event) {
     $("#trainDestination").val("");
     $("#trainTime").val("");
     $("#trainFrequency").val("");
+});
 
     
 
     // Create Firebase event for adding train to the database and a row in the html when a user adds an entry
     database.ref().on("child_added", function(childSnapshot) {
-        console.log(childSnapshot.val());
+        // console.log(childSnapshot.val().name);
+        // console.log(childSnapshot.val().destination);
+        // console.log(childSnapshot.val().firstTrain);
+        // console.log(childSnapshot.val().frequency);
 
-    // Store everything into a variable
+
+    // Store the results into a variable
     var trainName = childSnapshot.val().name;
     var trainDestination = childSnapshot.val().destination;
     var trainStart = childSnapshot.val().firstTrain;
     var trainFrequency = childSnapshot.val().frequency;
 
     // Log info to the console
-    console.log(trainName);
-    console.log(trainDestination);
-    console.log(trainStart);
-    console.log(trainFrequency);
+    // console.log(trainName);
+    // console.log(trainDestination);
+    // console.log(trainStart);
+    // console.log(trainFrequency);
 
     // Train start pushed back 1 year to make sure is is before current time
     var trainStartConverted = moment(trainStart, "HH:mm").subtract(1, "years");
-    console.log(trainStartConverted);
+    // console.log(trainStartConverted);
 
     // The current time
     var currentTime = moment();
-    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+    // console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm A"));
 
     // The difference between the times
-    var diffTime = moment().diff(moment(trainStartConverted), "minutes");
-    console.log("DIFFERENCE IN TIME: " + diffTime);
+    var diffTime = currentTime.diff(moment(trainStartConverted), "minutes");
+    // console.log("DIFFERENCE IN TIME: " + diffTime);
 
     // Time apart (remainder)
-    var tRemainder = diffTime % trainFrequencyInt;
-    console.log(tRemainder);
+    var tRemainder = diffTime % trainFrequency;
+    // console.log(tRemainder);
 
     // Minutes until next train
-    var tMinutesTillTrain = trainFrequencyInt - tRemainder;
-    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+    var tMinutesTillTrain = trainFrequency - tRemainder;
+    // console.log("MINUTES UNTILL TRAIN: " + tMinutesTillTrain);
 
     // Next Train
     var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+    // console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm A"));
     
-    var markUp = "<tr><td>" + trainName + "</td><td>" + trainDestination + "</td><td>" + trainStart + "</td><td>" + moment(nextTrain).format("hh:mm") + "</td><td>" + tMinutesTillTrain + "</td></tr>";
+    // Create a new variable
+    var newRow = $("<tr>").append(
+    $("<td>").text(trainName),
+    $("<td>").text(trainDestination),
+    $("<td>").text(trainFrequency),
+    $("<td>").text(moment(nextTrain).format("hh:mm A")),
+    $("<td>").text(tMinutesTillTrain)
+    );
 
-    // Create HTML elements for the table
-    $("#train-table").append(markUp);
+    // Append the variable to the table body
+    $("#train-table > tbody").append(newRow);
 });
-
-});
-    
-
-
-
-// submit function
-//      prevent default
-//      create HTML elements for train to display in table
-//      logic to calculate the next arriving train and how many minutes away it is (military time to regular time)
-//      send the inputs to the database
-//      That's pretty much it...
