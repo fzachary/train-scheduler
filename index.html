@@ -4,35 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Train Time</title>
-
+    <title>Train Scheduler</title>
     <!-- JQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-
     <!-- Bootstrap CDN  -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
     <!-- Firebase references -->
     <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-database.js"></script>
-
     <!-- Moment.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    
-    
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>    
 </head>
-<body>
 
+<body>
     <div class="container">
         <div class="jumbotron bg-dark">
-            <h1 class="text-center text-light">I Hear That Train a'Comin'</h1>
+            <h1 class="text-center text-light">TRAIN TIME</h1>
         </div>
-
         <div class="container">
-            <div class="card-header text-center"><h3 style="color: darkblue;">Current Train Schedule</h3></div>
-
+            <div class="card-header text-center">
+                <h3>Current Train Schedule</h3>
+            </div>
             <table class="table" id="train-table">
                 <thead class="thead-dark">
                     <tr>
@@ -45,79 +38,84 @@
                 </thead>
                 <tbody>
                     <tr>
-                            <td>Trenton Express</td>
-                            <td>Trenton</td>
-                            <td>25</td>
-                            <td>5:35 PM</td>
-                            <td>10</td>
+                        <td>Trenton Express</td>
+                        <td>Trenton</td>
+                        <td>25</td>
+                        <td>5:35 PM</td>
+                        <td>10</td>
                     </tr>
                     <tr>
-                            <td>Oregon Trail</td>
-                            <td>Salem, Oregon</td>
-                            <td>3600</td>
-                            <td>1:39 PM</td>
-                            <td>1154</td>
+                        <td>Oregon Trail</td>
+                        <td>Salem, Oregon</td>
+                        <td>3600</td>
+                        <td>1:39 PM</td>
+                        <td>1154</td>
                     </tr>
                     <tr>
-                            <td>Midnight Carriage</td>
-                            <td>Philadelphia</td>
-                            <td>15</td>
-                            <td>5:35 PM</td>
-                            <td>10</td>
+                        <td>Midnight Carriage</td>
+                        <td>Philadelphia</td>
+                        <td>15</td>
+                        <td>5:35 PM</td>
+                        <td>10</td>
                     </tr>
                     <tr>
-                            <td>Sing Sing Caravan</td>
-                            <td>Atlanta</td>
-                            <td>45</td>
-                            <td>5:53 PM</td>
-                            <td>28</td>
+                        <td>Sing Sing Caravan</td>
+                        <td>Atlanta</td>
+                        <td>45</td>
+                        <td>5:53 PM</td>
+                        <td>28</td>
                     </tr>
                     <tr>
-                            <td>Boston Bus</td>
-                            <td>Boston</td>
-                            <td>65</td>
-                            <td>5:50 PM</td>
-                            <td>25</td>
+                        <td>Boston Bus</td>
+                        <td>Boston</td>
+                        <td>65</td>
+                        <td>5:50 PM</td>
+                        <td>25</td>
                     </tr>
                     <tr>
-                            <td>California Caravan</td>
-                            <td>San Francisco</td>
-                            <td>6000</td>
-                            <td>1:25 AM</td>
-                            <td>4740</td>
+                        <td>California Caravan</td>
+                        <td>San Francisco</td>
+                        <td>6000</td>
+                        <td>1:25 AM</td>
+                        <td>4740</td>
                 </tbody>
             </table>
-        </div>
-        
+        </div>        
         <br>
-
         <div class="container" style="border-style: solid; margin-bottom: 30px; border-radius: 5px;">
-            <div class="card-header text-center"><h3 style="color: darkblue;">Add New Train</h3></div>
-                <form>
-                    <div class="form-group">
-                        <label for="trainName">Train Name</label>
-                        <input type="name" class="form-control" id="trainName">
-                    </div>
-                    <div class="form-group">
-                        <label for="trainDestination">Destination</label>
-                        <input type="trainDestination" class="form-control" id="trainDestination">
-                    </div>
-                    <div class="form-group">
-                        <label for="trainTime">First Train Time (HH:mm - Military Time)</label>
-                        <input type="trainTime" class="form-control" id="trainTime">
-                    </div>
-                    <div class="form-group">
-                        <label for="trainFrequency">Frequency (Min)</label>
-                        <input type="trainFrequency" class="form-control" id="trainFrequency">
-                    </div>
-                    <button type="submit" class="btn btn-primary" id="submit-button" style="margin-bottom: 15px;">Submit</button>
-                    </form>
+            <div class="card-header text-center">
+                <h3>Add New Train</h3>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="trainName">
+                        Train Name
+                    </label>
+                    <input type="name" class="form-control" id="trainName">
+                </div>
+                <div class="form-group">
+                    <label for="trainDestination">
+                        Destination
+                    </label>
+                    <input type="trainDestination" class="form-control" id="trainDestination">
+                </div>
+                <div class="form-group">
+                    <label for="trainTime">
+                        First Train Time (HH:mm - Military Time)
+                    </label>
+                    <input type="trainTime" class="form-control" id="trainTime">
+                </div>
+                <div class="form-group">
+                    <label for="trainFrequency">
+                        Frequency (Min)
+                    </label>
+                    <input type="trainFrequency" class="form-control" id="trainFrequency">
+                </div>
+                <button type="submit" class="btn btn-primary" id="submit-button" style="margin-bottom: 15px;">
+                    Submit
+                </button>
+            </form>
     </div>
-    
-
-
-
-
 
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

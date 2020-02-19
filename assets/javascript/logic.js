@@ -1,5 +1,5 @@
-// Initialize Firebase
-var firebaseConfig = {
+// Firebase config info
+const firebaseConfig = {
     apiKey: "AIzaSyAXeVIp3emOK86_qA8UZGO5BqGvB3kRwRI",
     authDomain: "train-scheduler-b66b5.firebaseapp.com",
     databaseURL: "https://train-scheduler-b66b5.firebaseio.com",
@@ -7,18 +7,16 @@ var firebaseConfig = {
     storageBucket: "",
     messagingSenderId: "786759938917",
     appId: "1:786759938917:web:1f0edfafa749338e"
-  };
+};
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
 // Global Variables
-var database = firebase.database();
+const database = firebase.database();
 
-// FUNCTIONS & EVENTS
-$(document).ready(function() {
-    // console.log("ready");
-});
+// $(document).ready(function() {
+// });
 
 // Button for adding trains
 $("#submit-button").on("click", function(event) {
@@ -45,12 +43,6 @@ $("#submit-button").on("click", function(event) {
      // Upload to the database
     database.ref().push(trainObj);
 
-    // Log everything to the console
-    // console.log(trainObj.name);
-    // console.log(trainObj.destination);
-    // console.log(trainObj.firstTrain);
-    // console.log(trainObj.frequency);
-
     // Alert the user that the train was added
     alert("Train successfully added");
 
@@ -65,23 +57,12 @@ $("#submit-button").on("click", function(event) {
 
     // Create Firebase event for adding train to the database and a row in the html when a user adds an entry
     database.ref().on("child_added", function(childSnapshot) {
-        // console.log(childSnapshot.val().name);
-        // console.log(childSnapshot.val().destination);
-        // console.log(childSnapshot.val().firstTrain);
-        // console.log(childSnapshot.val().frequency);
-
 
     // Store the results into a variable
     var trainName = childSnapshot.val().name;
     var trainDestination = childSnapshot.val().destination;
     var trainStart = childSnapshot.val().firstTrain;
     var trainFrequency = childSnapshot.val().frequency;
-
-    // Log info to the console
-    // console.log(trainName);
-    // console.log(trainDestination);
-    // console.log(trainStart);
-    // console.log(trainFrequency);
 
     // Train start pushed back 1 year to make sure is is before current time
     var trainStartConverted = moment(trainStart, "HH:mm").subtract(1, "years");
